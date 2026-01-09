@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aayansh – Future Loco Pilot 🚆</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Comic Sans MS','Poppins',system-ui;
+  min-height:100vh;
+  background:linear-gradient(135deg,#c7f9ff,#fff6c7);
+  color:#1f2937;
+  overflow-x:hidden;
+}
+
+/* 🌈 animated background */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(270deg,#ff595e,#ffca3a,#8ac926,#1982c4,#6a4c93);
+  background-size:1000% 1000%;
+  animation:rainbow 20s ease infinite;
+  z-index:-1;
+  opacity:.25;
+}
+@keyframes rainbow{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+header{
+  text-align:center;
+  padding:28px 16px;
+  background:#ffffffcc;
+  border-bottom:6px dashed #38bdf8;
+}
+header h1{margin:0;font-size:clamp(28px,6vw,48px)}
+.badge{display:inline-block;margin-top:10px;padding:6px 14px;border-radius:999px;background:#fde047;font-weight:700}
+
+.track{position:relative;height:140px;background:#8b5e34;margin:24px 0}
+.track::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#5a3d22 0 12px,#8b5e34 12px 24px)}
+
+.train{
+  position:absolute;
+  left:-220px;
+  top:30px;
+  width:220px;
+  height:70px;
+  background:linear-gradient(180deg,#ff595e,#ff7a7a);
+  border-radius:12px;
+  box-shadow:0 10px 0 #c0392b;
+  animation:move 10s linear infinite;
+}
+@keyframes move{to{left:110%}}
+.train::before{content:"";position:absolute;right:-28px;top:14px;width:28px;height:42px;background:#444;border-radius:6px}
+.window{position:absolute;top:12px;left:16px;width:36px;height:24px;background:#eaf6ff;border-radius:6px}
+.wheel{position:absolute;bottom:-18px;width:36px;height:36px;background:#333;border-radius:50%}
+.w1{left:28px}.w2{left:88px}.w3{left:148px}
+
+.container{max-width:1100px;margin:auto;padding:16px}
+.card{background:white;border-radius:18px;padding:16px;box-shadow:0 12px 24px #00000022;border:4px dotted #7c3aed}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card:hover{transform:translateY(-8px) scale(1.03);transition:.4s}
+
+.profile{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:center}
+.avatar{width:140px;height:140px;border-radius:50%;background:#38bdf8;display:grid;place-items:center;font-size:64px;border:6px solid white;animation:bounce 3s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.uniform{margin-top:8px;padding:6px 12px;border-radius:12px;background:#1d4ed8;color:white;font-weight:700}
+
+.sparkle{position:absolute;width:8px;height:8px;background:gold;border-radius:50%;animation:sparkle 1.5s}
+@keyframes sparkle{0%{transform:scale(0);opacity:0}50%{transform:scale(1);opacity:1}100%{transform:scale(0);opacity:0}}
+
+.hud{position:fixed;right:16px;bottom:16px;background:white;padding:10px 14px;border-radius:16px;box-shadow:0 10px 20px #00000033;font-size:14px}
+
+footer{text-align:center;padding:16px;opacity:.8}
+/* ☁️ Floating clouds */
+.cloud{position:absolute; top:60px; width:120px; height:50px; background:white; border-radius:30px; filter:blur(0.2px); animation:float 30s linear infinite; opacity:.9}
+.cloud::before,.cloud::after{content:""; position:absolute; background:white; border-radius:50%}
+.cloud::before{width:50px;height:50px;left:10px;top:-20px}
+.cloud::after{width:60px;height:60px;right:10px;top:-30px}
+@keyframes float{from{transform:translateX(-150px)}to{transform:translateX(120vw)}}
+
+/* 🌙 Night toggle button */
+.toggle{position:fixed; left:16px; bottom:16px; background:#111827; color:white; border:none; padding:10px 14px; border-radius:14px; cursor:pointer; box-shadow:0 10px 20px #00000033}
+body.night{background:linear-gradient(135deg,#0b1026,#1b2a4a); color:#e5e7eb}
+body.night header{background:#020617;border-bottom-color:#93c5fd}
+body.night .card{background:#020617;color:#e5e7eb}
+
+/* 🎉 Confetti */
+.confetti{position:fixed; top:-10px; width:8px; height:14px; animation:fall 3s linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg); opacity:0}}
+</style>
+</head>
+<body>
+<div class="cloud" style="animation-duration:35s"></div>
+<div class="cloud" style="top:110px;animation-duration:45s"></div>
+<header>
+  <h1>🚆 Aayansh Raj's Dream World</h1>
+  <p>Future Loco Pilot – Indian Railways 🇮🇳</p>
+  <span class="badge">DOB: 09/08/2014 • Class: 4th</span>
+</header>
+
+<div class="track">
+  <div class="train" id="train">
+    <div class="window"></div>
+    <div class="wheel w1"></div><div class="wheel w2"></div><div class="wheel w3"></div>
+  </div>
+</div>
+
+<main class="container">
+  <section class="profile card">
+    <div class="avatar">👦</div>
+    <div>
+      <h2>Hello! I am Aayansh 👋</h2>
+      <p>I love trains and dream of becoming a <b>Loco Pilot</b> in <b>Indian Railways</b>.</p>
+      <div class="uniform">🧑‍✈️ Loco Pilot Uniform</div>
+    </div>
+  </section>
+
+  <section class="cards">
+    <div class="card"><h3>🚄 My Dream</h3><p>To drive trains safely and proudly.</p></div>
+    <div class="card"><h3>📚 What I Study</h3><p>Maths ➕ Science 🔬 English 📘</p></div>
+    <div class="card"><h3>⭐ My Power</h3><p>Hard work & curiosity!</p></div>
+    <div class="card"><h3>🚦 Fun Fact</h3><p>Signals keep trains safe 🚦</p></div>
+  </section>
+</main>
+
+<button class="toggle" id="toggle">🌙 Night</button>
+<div class="hud">🎮 ⬅️ ➡️ Move Train<br>✨ Click for sparkles</div>
+
+<footer>Made with ❤️ for Aayansh</footer>
+
+<script>
+const train=document.getElementById('train');
+let pos=-220;
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight') pos+=20;
+  if(e.key==='ArrowLeft') pos-=20;
+  train.style.left=pos+'px';
+});
+
+document.addEventListener('click',e=>{
+  for(let i=0;i<6;i++){
+    const s=document.createElement('div');
+    s.className='sparkle';
+    s.style.left=e.pageX+Math.random()*20+'px';
+    s.style.top=e.pageY+Math.random()*20+'px';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),1500);
+  }
+});
+// 🌙 Toggle night mode
+const toggle=document.getElementById('toggle');
+toggle.addEventListener('click',()=>{
+  document.body.classList.toggle('night');
+  toggle.textContent=document.body.classList.contains('night')?'☀️ Day':'🌙 Night';
+});
+
+// 🎉 Confetti on load
+const colors=['#ff595e','#ffca3a','#8ac926','#1982c4','#6a4c93'];
+for(let i=0;i<60;i++){
+  const c=document.createElement('div');
+  c.className='confetti';
+  c.style.left=Math.random()*100+'vw';
+  c.style.background=colors[Math.floor(Math.random()*colors.length)];
+  c.style.animationDelay=Math.random()*1.5+'s';
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),3500);
+}
+</script>
+</body>
+</html>
